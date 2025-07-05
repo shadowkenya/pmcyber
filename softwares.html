@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PM Websites System - Solutions for Your Business</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles & Variables */
+        :root {
+            /* New, more attractive gradient: Professional Cool Tones */
+            --bg-gradient-start: #2a005f; /* Deep Violet */
+            --bg-gradient-mid: #4a00e0;    /* Vibrant Blue-Violet */
+            --bg-gradient-end: #00bcd4;    /* Bright Cyan */
+            --text-color: #fff;
+            --header-bg: rgba(0, 0, 0, 0.3); /* Slightly darker for deeper background */
+            --table-bg: rgba(255, 255, 255, 0.15); /* A bit more opaque for visibility */
+            --table-border: rgba(255, 255, 255, 0.5); /* Stronger border for contrast */
+            --table-header-bg: rgba(255, 255, 255, 0.3); /* More opaque */
+            --icon-color: #ffd700; /* Gold for icons for better contrast */
+            --button-whatsapp: #28a745; /* Green */
+            --button-whatsapp-hover: #218838;
+            --modal-bg: rgba(0, 0, 0, 0.8); /* Darker modal overlay */
+            --modal-content-bg: rgba(255, 255, 255, 0.25);
+            --modal-button-download: #25D366; /* WhatsApp Green */
+            --modal-button-download-hover: #1DA851;
+            --blinking-blue: #007bff;
+            --blinking-green: #28a745;
+            --whatsapp-icon-color: #25D366; /* Specific green for WhatsApp icon */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            text-rendering: optimizeLegibility; /* Improve font rendering */
+            -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 2.8em;
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); /* More pronounced shadow for clarity */
+            background: var(--header-bg);
+            backdrop-filter: blur(8px); /* Slightly more blur */
+            -webkit-backdrop-filter: blur(8px);
+            width: 100%;
+            box-sizing: border-box;
+            border-bottom: 1px solid var(--table-border);
+            animation: slideInDown 1s ease-out forwards;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Introduction Paragraph */
+        .intro-paragraph {
+            text-align: center;
+            margin: 40px auto;
+            font-size: 1.2em;
+            line-height: 1.8;
+            max-width: 900px;
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Added text shadow for appeal */
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Table Container */
+        .table-wrapper {
+            width: 95%;
+            max-width: 1200px;
+            margin: 30px auto;
+            background: var(--table-bg);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.45); /* Stronger shadow */
+            backdrop-filter: blur(12px); /* More blur */
+            -webkit-backdrop-filter: blur(12px);
+            overflow: hidden; /* For rounded corners */
+            animation: fadeInUp 1s ease-out forwards;
+            animation-delay: 1s;
+            opacity: 0;
+            border: 1px solid var(--table-border); /* Explicit border for consistency */
+        }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            color: var(--text-color);
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Stronger lines */
+        }
+
+        th {
+            background: var(--table-header-bg);
+            font-weight: 600;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background: rgba(255, 255, 255, 0.12); /* More visible on hover */
+            transition: background 0.3s ease;
+        }
+
+        /* Zipped File Icon */
+        .zipped-icon {
+            font-size: 1.8em;
+            color: var(--icon-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4); /* Stronger shadow */
+            transition: transform 0.3s ease-out;
+        }
+
+        .zipped-icon:hover {
+            transform: scale(1.15); /* More pronounced grow */
+        }
+
+        /* Download Button in Table */
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--text-color);
+            background: var(--button-whatsapp);
+            border: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-whatsapp:hover {
+            background: var(--button-whatsapp-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .btn-whatsapp i {
+            font-size: 1.2em;
+        }
+
+        /* Blinking Text Link (Tap for More Systems) */
+        .more-systems-link {
+            display: block;
+            text-align: center;
+            margin: 50px auto;
+            font-size: 1.3em;
+            font-weight: 700;
+            text-decoration: none;
+            animation: blinkingText 1.5s infinite alternate; /* Blinking animation */
+            transition: color 0.3s ease;
+        }
+
+        @keyframes blinkingText {
+            0% { color: var(--blinking-blue); text-shadow: 0 0 5px var(--blinking-blue); }
+            50% { color: var(--blinking-green); text-shadow: 0 0 15px var(--blinking-green); }
+            100% { color: var(--blinking-blue); text-shadow: 0 0 5px var(--blinking-blue); }
+        }
+
+        .more-systems-link:hover {
+            text-decoration: underline;
+            color: #fff;
+            animation: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            margin-top: auto;
+            font-size: 1.15em;
+            width: 100%;
+            box-sizing: border-box;
+            border-top: 1px solid var(--table-border);
+            animation: slideInUp 1s ease-out forwards;
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* WhatsApp Modal */
+        .whatsapp-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--modal-content-bg);
+            border-radius: 15px;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 30px;
+            border: 1px solid var(--table-border);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6); /* Stronger shadow */
+            position: relative;
+            animation: zoomIn 0.3s ease-out;
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-button {
+            color: #fff;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #ff4d4d;
+            text-decoration: none;
+        }
+
+        .modal-content .whatsapp-icon-large {
+            font-size: 4em;
+            color: var(--whatsapp-icon-color); /* Use variable for consistency */
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 1.8em;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .modal-content p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+            color: #eee;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            background: var(--modal-button-download);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            animation: blinkingModalButton 1.5s infinite alternate; /* New blinking animation */
+        }
+
+        @keyframes blinkingModalButton {
+            0% { background-color: var(--blinking-blue); box-shadow: 0 0 10px var(--blinking-blue); }
+            50% { background-color: var(--blinking-green); box-shadow: 0 0 20px var(--blinking-green); }
+            100% { background-color: var(--blinking-blue); box-shadow: 0 0 10px var(--blinking-blue); }
+        }
+
+        .modal-content button:hover {
+            background: var(--modal-button-download-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            animation: none; /* Stop blinking on hover */
+        }
+
+        /* Responsive Table (Card-like on Small Screens) */
+        @media (max-width: 768px) {
+            header { font-size: 2em; padding: 25px 15px; }
+            .intro-paragraph { font-size: 1.1em; margin: 30px auto; padding: 0 15px; }
+            .table-wrapper { padding: 0; }
+            table, thead, tbody, th, td, tr {
+                display: block;
+                width: 100%;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                margin-bottom: 15px;
+                display: block;
+                border-radius: 10px;
+                overflow: hidden;
+                background: rgba(255, 255, 255, 0.15);
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            tr:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 55%;
+                text-align: right;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Stronger lines for mobile cards */
+                min-height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+            td:last-child {
+                border-bottom: none;
+            }
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                width: 50%;
+                padding-right: 10px;
+                white-space: nowrap;
+                text-align: left;
+                font-weight: 600;
+                color: #ccc;
+            }
+            .btn-whatsapp {
+                width: calc(100% - 20px);
+                margin: 10px auto;
+                justify-content: center;
+            }
+            .more-systems-link { font-size: 1.1em; margin: 30px auto; }
+            footer { font-size: 1.05em; padding: 20px 15px; }
+            .modal-content { width: 95%; padding: 20px; }
+            .modal-content h2 { font-size: 1.5em; }
+            .modal-content p { font-size: 1em; }
+
+            td.source-code-cell {
+                justify-content: flex-end;
+                padding-left: 55%;
+            }
+            td.source-code-cell .zipped-icon {
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header { font-size: 1.8em; padding: 20px 10px; }
+            .intro-paragraph { font-size: 0.95em; margin: 20px auto; padding: 0 10px; }
+            .table-wrapper { width: 98%; }
+            td { padding: 12px; font-size: 0.9em; }
+            td::before { font-size: 0.85em; }
+            .btn-whatsapp { padding: 8px 12px; font-size: 0.85em; }
+            .more-systems-link { font-size: 1em; margin: 25px auto; }
+            footer { font-size: 0.95em; padding: 15px 10px; }
+            .modal-content .whatsapp-icon-large { font-size: 3em; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        PM Websites System 🌐
+    </header>
+
+    <p class="intro-paragraph">
+        Welcome to **PM Websites System**! We craft dynamic and efficient web solutions tailored to various industries. Below, discover some of our ready-to-deploy website systems designed to elevate your online presence and streamline your operations. Each system is built with **scalability, security, and user-friendliness** in mind, ensuring a seamless experience.
+    </p>
+
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>System </th>
+                    <th>File</th>
+                    <th>Source Code</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td data-label=" System ">🏥 Hospital Management System</td>
+                    <td data-label="file" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Hospital Management System')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🏫 School Management System</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('School Management System')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🏨 Hotel Booking System</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Hotel Booking System')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🏦 Bank & Financial Portal</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Bank & Financial Portal')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🚜 Farm Management System</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Farm Management System')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🛍️ E-commerce Shop System</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('E-commerce Shop System')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🍽️ Restaurant Ordering System</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Restaurant Ordering System')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🚗 Car Rental System</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Car Rental System')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">🏋️ Gym & Fitness Booking</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Gym & Fitness Booking')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+                <tr>
+                    <td data-label="Website System Name">📦 Inventory Management Portal</td>
+                    <td data-label="Source Code" class="source-code-cell"><i class="fa-solid fa-file-zipper zipped-icon"></i></td>
+                    <td data-label="Download Source Code"><button class="btn-whatsapp" onclick="openWhatsAppModal('Inventory Management Portal')"><i class="fab fa-whatsapp"></i> Request Now</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="#" class="more-systems-link">Tap for more systems! ✨</a>
+
+    <footer>
+        PM Cyber Solution
+    </footer>
+
+    <div id="whatsappModal" class="whatsapp-modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeWhatsAppModal()">&times;</span>
+            <i class="fab fa-whatsapp whatsapp-icon-large"></i>
+            <h2>Request Source Code</h2>
+            <p>Tap "Download" to initiate a WhatsApp message to PM Cyber Solution for the source code of the <strong id="systemNameInModal"></strong>.</p>
+            <button onclick="sendWhatsAppRequest()">Download</button> </div>
+    </div>
+
+    <script>
+        const whatsappNumber = '+254758361830';
+        let currentSystemName = '';
+
+        function openWhatsAppModal(systemName) {
+            currentSystemName = systemName;
+            document.getElementById('systemNameInModal').textContent = systemName;
+            document.getElementById('whatsappModal').style.display = 'flex'; // Show modal
+        }
+
+        function closeWhatsAppModal() {
+            document.getElementById('whatsappModal').style.display = 'none'; // Hide modal
+        }
+
+        function sendWhatsAppRequest() {
+            const message = encodeURIComponent(`Hello PM Cyber Solution, I am interested in the source code for your ${currentSystemName} website system. Please provide more details.`);
+            const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${message}`;
+            window.open(whatsappUrl, '_blank'); // Open WhatsApp in a new tab
+
+            // Optional: Close modal after opening WhatsApp
+            closeWhatsAppModal();
+        }
+
+        // Close modal if user clicks outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('whatsappModal');
+            if (event.target == modal) {
+                closeWhatsAppModal();
+            }
+        }
+    </script>
+
+</body>
+</html>

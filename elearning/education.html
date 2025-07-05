@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educational Research Materials</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css"> 
+    <style>
+        /* General Body and Container */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .page-header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .home-icon {
+            color: white;
+            font-size: 1.8em;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: color 0.3s ease;
+        }
+
+        .home-icon:hover {
+            color: #e2e6ea;
+        }
+
+        .main-title {
+            font-size: 2.5em;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+        }
+
+        .main-nav {
+            background-color: #0056b3;
+            padding: 10px 0;
+            box-shadow: inset 0 -2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-button {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        .nav-button:hover {
+            background-color: #004494;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content Grid Layout */
+        .explanation-boxes-container {
+            padding: 30px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 30px;
+            justify-content: center;
+        }
+
+        /* Explanation Box Styles */
+        .explanation-box {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            padding: 30px;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 350px; 
+            height: auto; 
+        }
+
+        .explanation-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .explanation-box h2 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .explanation-box p {
+            font-size: 1.05em;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            flex-grow: 1;
+        }
+
+        /* PDF Downloads Section */
+        .pdf-downloads {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px dashed #e0e0e0;
+        }
+
+        .pdf-downloads h3 {
+            font-size: 1.3em;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .pdf-downloads ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .pdf-downloads li {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        /* Download Link (Standard) */
+        .download-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease, transform 0.2s ease;
+        }
+
+        .download-link:hover {
+            color: #0056b3;
+            transform: translateX(5px);
+        }
+
+        .download-link .fas {
+            color: #dc3545;
+            font-size: 1.2em;
+        }
+
+        /* Remove progress bar and status text CSS since they are no longer needed for on-page display */
+        .download-progress-container,
+        .download-percentage,
+        .download-status-text,
+        .download-open-link {
+            display: none !important; 
+        }
+
+        /* Explore Resources Button */
+        .box-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 25px;
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.05em;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 8px rgba(40, 167, 69, 0.3);
+        }
+
+        .box-link:hover {
+            background-color: #218838;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.4);
+        }
+
+        .box-link .fas {
+            margin-left: 5px;
+        }
+
+        /* Footer Styles */
+        .page-footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 40px;
+            font-size: 0.9em;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .explanation-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            .main-title {
+                font-size: 2em;
+            }
+            .home-icon {
+                font-size: 1.6em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 1.8em;
+            }
+            .home-icon {
+                font-size: 1.5em;
+                left: 10px;
+            }
+            .nav-buttons-wrapper {
+                flex-direction: column;
+                align-items: center;
+            }
+            .explanation-grid {
+                grid-template-columns: 1fr; 
+            }
+            .explanation-box {
+                padding: 25px;
+            }
+            .explanation-box h2 {
+                font-size: 1.7em;
+            }
+            .explanation-box p {
+                font-size: 1em;
+            }
+            .pdf-downloads h3 {
+                font-size: 1.1em;
+            }
+            .download-link {
+                font-size: 1em;
+            }
+            .box-link {
+                padding: 10px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <div class="header-content container">
+            <a href="../index.html" class="home-icon" aria-label="Home">
+                <i class="fas fa-home"></i>
+            </a>
+            <h1 class="main-title">Notes and Exam Materials</h1>
+        </div>
+        <nav class="main-nav">
+            <div class="container nav-buttons-wrapper">
+                <a href="#tvets" class="nav-button">TVETs</a>
+                <a href="#polytechnics" class="nav-button">Polytechnics</a>
+                <a href="#university" class="nav-button">University</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="explanation-boxes-container">
+        <div class="container explanation-grid">
+            <div class="explanation-box" id="tvets">
+                <h2><i class="fas fa-tools"></i> TVETs</h2>
+                <p>Explore comprehensive resources for Technical and Vocational Education and Training (TVETs). This section provides materials covering various trades, practical skills development, certification guides, and industry best practices to support vocational students and instructors.</p>
+                <div class="pdf-downloads">
+                    <h3>Download Material</h3>
+                    <ul>
+                        <li class="download-item">
+                            <a href="pdf/tvet.pdf" class="download-link" download="TVET_Curriculum_Guide.pdf">
+                                <i class="fas fa-file-pdf"></i> Curriculum Guide (PDF)
+                            </a>
+                            <div class="download-progress-container">
+                                <div class="download-progress-bar"></div>
+                                <span class="download-percentage">0%</span>
+                            </div>
+                            <span class="download-status-text"></span>
+                            <a href="pdf/tvet.pdf" class="download-open-link" target="_blank" rel="noopener noreferrer">Open PDF</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="user/login.html" class="box-link">Explore Resources <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="explanation-box" id="polytechnics">
+                <h2><i class="fas fa-industry"></i> Polytechnics</h2>
+                <p>Explore in-depth research articles, project reports, and industry-focused studies relevant to polytechnic education. This covers advanced technical disciplines, engineering, applied sciences, and emerging technologies. Resources support diploma and higher diploma students, researchers, and faculty.</p>
+                <div class="pdf-downloads">
+                    <h3>Download Material</h3>
+                    <ul>
+                        <li class="download-item">
+                            <a href="pdf/poly.pdf" class="download-link" download="Polytechnic_Research_Articles.pdf">
+                                <i class="fas fa-file-pdf"></i> Research Articles (PDF)
+                            </a>
+                            <div class="download-progress-container">
+                                <div class="download-progress-bar"></div>
+                                <span class="download-percentage">0%</span>
+                            </div>
+                            <span class="download-status-text"></span>
+                            <a href="pdf/poly.pdf" class="download-open-link" target="_blank" rel="noopener noreferrer">Open PDF</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="user/login.html" class="box-link">Explore Resources <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="explanation-box" id="university">
+                <h2><i class="fas fa-university"></i> University</h2>
+                <p>A comprehensive collection of scholarly articles, theses, dissertations, and academic journals across diverse disciplines. Designed for undergraduate and postgraduate students, researchers, and academics. This section facilitates literature reviews, methodology development, and dissemination of high-level research findings.</p>
+                <div class="pdf-downloads">
+                    <h3>Download Material</h3>
+                    <ul>
+                        <li class="download-item">
+                            <a href="pdf/campus.pdf" class="download-link" download="University_Scholarly_Articles.pdf">
+                                <i class="fas fa-file-pdf"></i> Scholarly Articles (PDF)
+                            </a>
+                            <div class="download-progress-container">
+                                <div class="download-progress-bar"></div>
+                                <span class="download-percentage">0%</span>
+                            </div>
+                            <span class="download-status-text"></span>
+                            <a href="pdf/campus.pdf" class="download-open-link" target="_blank" rel="noopener noreferrer">Open PDF</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="user/login.html" class="box-link">Explore Resources <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="page-footer">
+        <div class="container">
+            <p>Copyright © 2025 PM Cyber Solutions</p>
+        </div>
+    </footer>
+
+    <script></script> 
+</body>
+</html>

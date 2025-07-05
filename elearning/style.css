@@ -1,0 +1,290 @@
+/* Universal Styles */
+:root {
+    --primary-color: #0056b3; /* Dark Blue */
+    --secondary-color: #007bff; /* Lighter Blue */
+    --accent-color: #28a745; /* Green for highlights */
+    --text-color: #333;
+    --light-bg: #f8f9fa;
+    --dark-bg: #343a40;
+    --white: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-bg);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--secondary-color);
+}
+
+/* Header Section */
+.page-header {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: relative;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.main-title {
+    font-size: 2.2em;
+    font-weight: 700;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.home-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--white);
+    font-size: 1.8em;
+    transition: color 0.3s ease;
+}
+
+.home-icon:hover {
+    color: var(--accent-color);
+}
+
+/* Navigation Buttons */
+.main-nav {
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+}
+
+.nav-buttons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.nav-button {
+    background-color: var(--accent-color);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.nav-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Main Content - Explanation Boxes */
+.explanation-boxes-container {
+    flex-grow: 1; /* Allows this section to take up remaining vertical space */
+    background-color: var(--light-bg);
+    padding: 40px 0; /* Vertical padding for the section */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align boxes to the top */
+}
+
+.explanation-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allow boxes to wrap to the next line */
+    justify-content: center; /* Center boxes horizontally */
+    gap: 30px; /* Space between boxes */
+    padding: 20px; /* Inner padding for the grid container */
+    width: 100%; /* Ensure it uses available width */
+}
+
+.explanation-box {
+    background-color: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    padding: 25px;
+    flex: 1 1 calc(33.333% - 40px); /* Default to 3 boxes per row, minus gap */
+    max-width: 350px; /* Max width for individual boxes */
+    min-width: 280px; /* Min width before wrapping */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push link to bottom */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.explanation-box:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.explanation-box h2 {
+    color: var(--primary-color);
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+}
+
+.explanation-box h2 .fas {
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.explanation-box p {
+    font-size: 0.95em;
+    color: var(--text-color);
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Allow paragraph to take available space */
+}
+
+.box-link {
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-top: auto; /* Push link to the bottom */
+    transition: color 0.3s ease;
+}
+
+.box-link:hover {
+    color: #218838;
+}
+
+.box-link .fas {
+    margin-left: 8px;
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.box-link:hover .fas {
+    transform: translateX(5px);
+}
+
+/* Footer Section */
+.page-footer {
+    background-color: var(--dark-bg);
+    color: var(--white);
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.9em;
+    margin-top: auto;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) { /* Adjust for larger tablets/laptops */
+    .explanation-box {
+        flex: 1 1 calc(50% - 30px); /* 2 boxes per row */
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 1.8em;
+    }
+
+    .home-icon {
+        font-size: 1.5em;
+        left: 10px;
+    }
+
+    .header-content {
+        padding-bottom: 10px;
+    }
+
+    .nav-buttons-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .nav-button {
+        width: 80%;
+        max-width: 250px;
+        padding: 8px 15px;
+        font-size: 0.95em;
+    }
+
+    .explanation-boxes-container {
+        padding: 30px 0;
+    }
+
+    .explanation-grid {
+        gap: 20px;
+        padding: 15px;
+    }
+
+    .explanation-box {
+        flex: 1 1 100%; /* 1 box per row on smaller screens */
+        max-width: 90%; /* Limit width on very small screens */
+        padding: 20px;
+    }
+
+    .explanation-box h2 {
+        font-size: 1.4em;
+    }
+
+    .explanation-box p {
+        font-size: 0.9em;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-title {
+        font-size: 1.5em;
+    }
+
+    .home-icon {
+        font-size: 1.3em;
+        left: 5px;
+    }
+
+    .nav-button {
+        width: 90%;
+        font-size: 0.9em;
+    }
+
+    .explanation-box {
+        padding: 15px;
+    }
+
+    .explanation-box h2 {
+        font-size: 1.2em;
+    }
+
+    .explanation-box p {
+        font-size: 0.85em;
+    }
+}

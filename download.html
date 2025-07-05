@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Downloads - PM Cyber Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+<style>
+        /* Base Styles & Variables */
+        :root {
+            --primary-gradient-start: #6a11cb; /* Deep Purple */
+            --primary-gradient-end: #2575fc; /* Vibrant Blue */
+            --text-color: #fff;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --card-border: rgba(255, 255, 255, 0.3);
+            --card-shadow: rgba(31, 38, 135, 0.37);
+            --card-hover-shadow: rgba(31, 38, 135, 0.5);
+            --header-bg: rgba(0, 0, 0, 0.2);
+            --button-download: #007bff; /* Blue */
+            --button-download-hover: #0056b3;
+        }
+/* Basic styling for the header and home icon */
+        header {
+            /* Keep existing header styles for background, padding, etc. */
+            background: var(--header-bg); /* Original background */
+            padding: 20px 20px; /* Original padding */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+            animation: slideInDown 1s ease-out forwards;
+
+            /* Flexbox for alignment */
+            display: flex;
+            align-items: center; /* Vertically center items */
+            justify-content: space-between; /* Space out icon and text */
+            color: var(--text-color); /* Ensure text color from variables */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); /* Text shadow for clarity */
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            flex-grow: 1; /* Allow content to grow and take space */
+            justify-content: center; /* Center the text within its flex container */
+            margin-right: 48px; /* Offset for the home icon's width to help center the text */
+        }
+
+        .header-title {
+            font-size: 2.5em; /* Match original header font size */
+            font-weight: 700;
+            white-space: nowrap; /* Prevent text from wrapping prematurely */
+            overflow: hidden; /* Hide overflow if it shrinks too much */
+            text-overflow: ellipsis; /* Add ellipsis for overflowed text */
+        }
+
+        .home-link {
+            text-decoration: none; /* Remove underline from link */
+            color: var(--text-color); /* Inherit header color or set explicitly */
+            font-size: 28px; /* Size of the home icon */
+            display: flex; /* Ensures proper alignment if text is added */
+            align-items: center;
+            margin-left: 10px; /* Add some margin to the left of the icon */
+        }
+
+        .home-link:hover {
+            color: #007bff; /* Change color on hover */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Header */
+        /* All header styles are now consolidated within the .header selector above */
+
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Introduction Paragraph */
+        .intro-paragraph {
+            text-align: center;
+            margin: 40px auto;
+            font-size: 1.2em;
+            line-height: 1.8;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Course Cards Container */
+        .course-cards-container {
+            flex-grow: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px; /* Space between cards */
+            padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Course Card Styles (repurposing glass-box concept) */
+        .course-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+            box-shadow: 0 8px 32px 0 var(--card-shadow);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            width: 300px;
+            min-height: 250px; /* Ensure enough height for content */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute content nicely */
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer; /* Indicates interactivity */
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Staggered animation delays */
+        .course-card:nth-child(1) { animation-delay: 0.8s; }
+        .course-card:nth-child(2) { animation-delay: 1.0s; }
+        .course-card:nth-child(3) { animation-delay: 1.2s; }
+        .course-card:nth-child(4) { animation-delay: 1.4s; }
+        .course-card:nth-child(5) { animation-delay: 1.6s; }
+        .course-card:nth-child(6) { animation-delay: 1.8s; }
+
+        @keyframes fadeInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .course-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 45px 0 var(--card-hover-shadow);
+            background: rgba(255, 255, 255, 0.2); /* Slightly more opaque on hover */
+        }
+
+        .course-card .icon-img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px; /* More space for visual separation */
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+        }
+
+        .course-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 10px;
+            color: var(--text-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+
+        .course-card .description {
+            font-size: 0.95em;
+            color: #e0e0e0;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            flex-grow: 1; /* Allows description to take available space */
+        }
+
+        .course-card .duration {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #c9c9c9;
+            margin-bottom: 15px;
+        }
+
+        /* Download Button inside card */
+        .btn-download {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px; /* Slightly more rounded */
+            text-decoration: none;
+            color: var(--text-color);
+            background: var(--button-download);
+            border: 1px solid var(--button-download-hover);
+            transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            width: calc(100% - 20px); /* Fill card width, accounting for padding */
+            max-width: 200px; /* Max width for button */
+        }
+
+        .btn-download:hover {
+            background: var(--button-download-hover);
+            transform: translateY(-3px); /* More pronounced lift */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Hover Glow Effect for Cards */
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease-out;
+        }
+
+        .course-card:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header-title { font-size: 2.2em; }
+            .course-card { width: 280px; min-height: 240px; }
+            .course-card .icon-img { width: 70px; height: 70px; }
+            .course-card h3 { font-size: 1.5em; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 15px; }
+            .header-title { font-size: 1.8em; }
+            .intro-paragraph { font-size: 1.1em; margin: 30px auto; padding: 0 15px; }
+            .course-cards-container { gap: 25px; padding: 30px 15px; }
+            .course-card {
+                width: 90%; /* Take more width on tablets */
+                max-width: 350px; /* Limit max width for larger tablets */
+                min-height: 220px;
+            }
+            .course-card .icon-img { width: 60px; height: 60px; }
+            .course-card h3 { font-size: 1.4em; }
+            .course-card .description, .course-card .duration { font-size: 0.9em; }
+            .btn-download { padding: 10px 15px; font-size: 0.95em; }
+        }
+
+        @media (max-width: 480px) {
+            header { padding: 10px; }
+            .header-title { font-size: 1.5em; }
+            .intro-paragraph { font-size: 0.95em; margin: 20px auto; padding: 0 10px; }
+            .course-cards-container { gap: 20px; padding: 20px 10px; }
+            .course-card {
+                width: 95%; /* Almost full width on mobile */
+                min-height: 200px;
+                padding: 20px;
+            }
+            .course-card .icon-img { width: 50px; height: 50px; }
+            .course-card h3 { font-size: 1.2em; margin-bottom: 5px;}
+            .course-card .description { font-size: 0.85em; margin-bottom: 10px;}
+            .course-card .duration { font-size: 0.75em; margin-bottom: 10px;}
+            .btn-download { padding: 8px 12px; font-size: 0.9em; }
+            .header-content {
+                margin-right: 0; /* Remove offset on small screens */
+                justify-content: flex-end; /* Push title to the right if space is limited */
+            }
+            .header-title {
+                font-size: 1.3em; /* Further reduce font size for very small screens */
+                text-align: right; /* Align text to the right on smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="home-link" aria-label="Home">
+            <i class="fas fa-home"></i>
+        </a>
+        <div class="header-content">
+            <span class="header-title"> Guideline Downloads 📚</span>
+        </div>
+    </header>
+
+    <p class="intro-paragraph">
+        Welcome to **PM Cyber Services**! Browse our comprehensive computer package course notes available for direct download. Each package provides in-depth learning materials designed for practical skill acquisition. Simply click the 'Download Notes' button to instantly access your chosen materials.
+    </p>
+
+    <div class="course-cards-container">
+        <div class="course-card">
+            <img src="img/word.jpg" alt="MS Word Icon" class="icon-img">
+            <h3>MS Word</h3>
+            <p class="description">Master creating, editing, and formatting professional documents.</p>
+            <p class="duration">Learning Period: 2 Weeks</p>
+            <a href="pdf/word.pdf" target="_blank" class="btn-download">Download Notes</a>
+        </div>
+        <div class="course-card">
+            <img src="img/exel.jpg" alt="MS Excel Icon" class="icon-img">
+            <h3>MS Excel</h3>
+            <p class="description">Powerful data analysis, calculations, and charting techniques.</p>
+            <p class="duration">Learning Period: 3 Weeks</p>
+            <a href="pdf/exel.pdf" target="_blank" class="btn-download">Download Notes</a>
+        </div>
+        <div class="course-card">
+            <img src="img/power.jpg" alt="MS PowerPoint Icon" class="icon-img">
+            <h3>MS PowerPoint</h3>
+            <p class="description">Design captivating presentations that inform and inspire your audience.</p>
+            <p class="duration">Learning Period: 1.5 Weeks</p>
+            <a href="pdf/powerpoint.pdf" target="_blank" class="btn-download">Download Notes</a>
+        </div>
+        <div class="course-card">
+            <img src="img/pub.jpg" alt="MS Publisher Icon" class="icon-img">
+            <h3>MS Publisher</h3>
+            <p class="description">Create professional-looking brochures, newsletters, and marketing materials.</p>
+            <p class="duration">Learning Period: 1 Week</p>
+            <a href="pdf/pub.pdf" target="_blank" class="btn-download">Download Notes</a>
+        </div>
+        <div class="course-card">
+            <img src="img/acces.jpg" alt="MS Access Icon" class="icon-img">
+            <h3>MS Access</h3>
+            <p class="description">Understand database management: store, organize, and retrieve information effectively.</p>
+            <p class="duration">Learning Period: 2.5 Weeks</p>
+            <a href="pdf/access.pdf" target="_blank" class="btn-download">Download Notes</a>
+        </div>
+        <div class="course-card">
+            <img src="img/out.jpg" alt="Internet & Email Icon" class="icon-img">
+            <h3>Internet & Email</h3>
+            <p class="description">Navigate the web safely, manage your emails, and stay connected.</p>
+            <p class="duration">Learning Period: 1.5 Weeks</p>
+            <a href="pdf/internet.pdf" target="_blank" class="btn-download">Download Notes</a>
+        </div>
+    </div>
+
+</body>
+</html>

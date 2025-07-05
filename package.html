@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Packages Lessons - PM Cyber Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+<style>
+        /* Base Styles */
+        :root {
+            --primary-gradient-start: #6a11cb; /* Purple */
+            --primary-gradient-end: #2575fc; /* Blue */
+            --text-color: #fff;
+            --box-bg-start: rgba(255, 255, 255, 0.15);
+            --box-bg-hover: rgba(255, 255, 255, 0.25);
+            --border-color: rgba(255, 255, 255, 0.3);
+            --shadow-color: rgba(31, 38, 135, 0.37);
+            --hover-shadow-color: rgba(31, 38, 135, 0.5);
+            --header-bg: rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, var(--primary-gradient-start) 0%, var(--primary-gradient-end) 100%);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Prevents horizontal scroll on small screens */
+            scroll-behavior: smooth; /* Smooth scrolling for potential anchors */
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 20px 20px; /* Reduced padding */
+            font-size: 2.5em; /* Slightly smaller font */
+            font-weight: 700;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+            background: var(--header-bg);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            animation: slideInDown 1s ease-out forwards;
+        }
+
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Introduction Paragraph */
+        .intro-paragraph {
+            text-align: center;
+            margin: 40px auto;
+            font-size: 1.2em;
+            line-height: 1.8;
+            max-width: 800px;
+            padding: 0 20px;
+            animation: fadeIn 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Main Content Container */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 40px 20px;
+            flex-grow: 1;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Glass Box Styles */
+        .glass-box {
+            background: var(--box-bg-start);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 8px 32px 0 var(--shadow-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            width: 300px;
+            height: 220px; /* Slightly increased height to accommodate image */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Align content to top */
+            align-items: center;
+            text-align: center;
+            padding: 25px;
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        background 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .glass-box:nth-child(1) { animation-delay: 0.8s; }
+        .glass-box:nth-child(2) { animation-delay: 1.0s; }
+        .glass-box:nth-child(3) { animation-delay: 1.2s; }
+        .glass-box:nth-child(4) { animation-delay: 1.4s; }
+        .glass-box:nth-child(5) { animation-delay: 1.6s; }
+        .glass-box:nth-child(6) { animation-delay: 1.8s; }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .glass-box:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 15px 45px 0 var(--hover-shadow-color);
+            background: var(--box-bg-hover);
+        }
+
+        .glass-box .icon-img {
+            width: 80px; /* Size of the icon image */
+            height: 80px;
+            object-fit: contain; /* Ensure image fits without distortion */
+            margin-bottom: 10px; /* Space between image and title */
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4)); /* Shadow for the image */
+        }
+
+        .glass-box h3 {
+            font-size: 1.6em; /* Slightly smaller heading now that there's an image */
+            margin-bottom: 5px; /* Reduced margin */
+            color: var(--text-color);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            transition: color 0.3s ease;
+        }
+
+        .glass-box p {
+            font-size: 0.95em;
+            color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Hover Glow Effect */
+        .glass-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease-out;
+        }
+
+        .glass-box:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            header {
+                font-size: 2.2em;
+            }
+            .glass-box {
+                width: 280px;
+                height: 200px;
+            }
+            .glass-box .icon-img {
+                width: 70px;
+                height: 70px;
+            }
+            .glass-box h3 {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                font-size: 1.8em;
+                padding: 15px 15px;
+            }
+            .intro-paragraph {
+                font-size: 1.1em;
+                margin: 30px auto;
+            }
+            .container {
+                gap: 25px;
+                padding: 30px 15px;
+            }
+            .glass-box {
+                width: 90%;
+                max-width: 350px;
+                height: 190px;
+            }
+            .glass-box .icon-img {
+                width: 60px;
+                height: 60px;
+            }
+            .glass-box h3 {
+                font-size: 1.4em;
+            }
+            .glass-box p {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                font-size: 1.5em;
+                padding: 10px 10px;
+            }
+            .intro-paragraph {
+                font-size: 0.95em;
+                margin: 20px auto;
+                padding: 0 10px;
+            }
+            .container {
+                gap: 20px;
+                padding: 20px 10px;
+            }
+            .glass-box {
+                width: 95%;
+                height: 170px;
+                padding: 20px;
+            }
+            .glass-box .icon-img {
+                width: 50px;
+                height: 50px;
+            }
+            .glass-box h3 {
+                font-size: 1.2em;
+            }
+            .glass-box p {
+                font-size: 0.8em;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+
+        Computer Packages Lessons 🚀
+
+    </header>
+
+    <p class="intro-paragraph">
+        Welcome to **PM Cyber Services**! Explore our diverse range of computer package lessons designed to equip you with essential digital skills. Each of our courses is crafted to be engaging, practical, and easy to understand, helping you master new software with confidence. Dive in and transform your digital literacy!
+    </p>
+ 
+    <div class="container">
+        <div class="glass-box" onclick="window.open('download.html', '_blank');">
+            <img src="img/word.jpg" alt="MS Word Icon" class="icon-img">
+            <h3>MS Word</h3>
+            <p>Master creating, editing, and formatting professional documents.</p>
+        </div>
+        <div class="glass-box" onclick="window.open('download.html', '_blank');">
+            <img src="img/exel.jpg" alt="MS Excel Icon" class="icon-img">
+            <h3>MS Excel</h3>
+            <p>Learn powerful data analysis, calculations, and charting techniques.</p>
+        </div>
+        <div class="glass-box" onclick="window.open('download.html', '_blank');">
+            <img src="img/power.jpg" alt="MS PowerPoint Icon" class="icon-img">
+            <h3>MS PowerPoint</h3>
+            <p>Design captivating presentations that inform and inspire your audience.</p>
+        </div>
+        <div class="glass-box" onclick="window.open('download.html', '_blank');">
+            <img src="img/pub.jpg" alt="MS Publisher Icon" class="icon-img">
+            <h3>MS Publisher</h3>
+            <p>Create professional-looking brochures, newsletters, and marketing materials.</p>
+        </div>
+        <div class="glass-box" onclick="window.open('download.html', '_blank');">
+            <img src="img/acces.jpg" alt="MS Access Icon" class="icon-img">
+            <h3>MS Access</h3>
+            <p>Understand database management: store, organize, and retrieve information effectively.</p>
+        </div>
+        <div class="glass-box" onclick="window.open('download.html', '_blank');">
+            <img src="img/out.jpg" alt="Internet & Email Icon" class="icon-img">
+            <h3>Internet & Email</h3>
+            <p>Navigate the web safely, manage your emails, and stay connected.</p>
+        </div>
+    </div>
+
+</body>
+</html>
